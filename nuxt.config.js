@@ -22,7 +22,7 @@ module.exports = {
                 platform: 'web',
             },
         ],
-        theme_color: 'yellow', 
+        theme_color: 'yellow',
     },
 
     modules: [
