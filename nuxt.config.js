@@ -4,15 +4,25 @@ module.exports = {
 
     head: {
         title: 'Weather Challenge - Kloeckner',
-        htmlAttrs: {
-            lang: 'en',
-        },
     },
 
     loading: { color: '#3B8070' },
 
     manifest: {
-        theme_color: '#3B8070',
+        name: 'Weather Challenge',
+        short_name: 'Weather',
+        start_url: '.',
+        display: 'fullscreen',
+        background_color: '#fff',
+        description: '',
+        lang: 'en',
+        orientation: 'portrait',
+        related_applications: [
+            {
+                platform: 'web',
+            },
+        ],
+        theme_color: 'yellow', 
     },
 
     modules: [
