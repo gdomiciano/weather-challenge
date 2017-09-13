@@ -26,6 +26,7 @@ module.exports = {
 
     modules: [
         '@nuxtjs/pwa',
+        '@nuxtjs/axios',
     ],
     env: {
         API_KEY: 'cecf2cdf0f3ee489ba06aff6db8cb201',

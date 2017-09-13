@@ -1,10 +1,10 @@
 <template>
     <div>
-oi  {{ posts }}
-
         <form action="">
-            <select name="countries" id="countries"></select>
-            <select name="cities" id="cities"></select>
+            <select name="countries" id="countries" v-if="places">
+                <option value="place.country" v-for="place in places" :key="place.$index">{{place.country}}</option>
+            </select>
+            <select name="cities" id="cities" v-if="cities"></select>
             <input type="submit" value="Check weather">
         </form>
     </div>
@@ -16,24 +16,28 @@ oi  {{ posts }}
     export default {
         name: 'city-form',
         layout: 'default',
-        created(){
-            axios.get('~/static/city.list.json')
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        },
         data() {
             return {
-                posts: null,
+                places: this.$store.state.places,
                 cities: null,
             };
         },
+        beforeMount() {
+            console.log(this);
+        },
+        async asyncData({ store, req }) {
+            // Fetch data
+            console.log('async', store);
+            if (!store.state.places) await store.dispatch('getPlaces');
+            // Update data based on state
+            return {
+                from: req ? 'SERVER' : 'CLIENT',
+            };
+        },
+
         methods: {
             getCountryCities(country) {
-                const cities = this.Places.Filter(place => place.country.match(country));
+                const cities = this.places.Filter(place => place.country.match(country));
                 this.cities = cities;
             },
         },
