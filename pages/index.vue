@@ -2,6 +2,7 @@
     <section class="container">
         <div>
             <logo/>
+            <city-form/>
             <h1 class="title">
                 NUXT
             </h1>
@@ -22,9 +23,10 @@
 
 <script>
     import Logo from '~/components/Logo.vue';
+    import CityForm from '~/components/CityForm.vue';
 
     export default {
-        components: { Logo },
+        components: { Logo, CityForm },
         data() {
             return {
                 online: true,

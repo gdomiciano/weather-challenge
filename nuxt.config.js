@@ -1,6 +1,10 @@
 module.exports = {
 
-    build: {},
+    build: {
+        vendor: [
+            'axios',
+        ],
+    },
 
     head: {
         title: 'Weather Challenge - Kloeckner',
