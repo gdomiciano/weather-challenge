@@ -1,12 +1,6 @@
 <template>
     <div>
-        <form action="">
-            <select name="countries" id="countries" v-if="places">
-                <option value="place.country" v-for="place in places" :key="place.$index">{{place.country}}</option>
-            </select>
-            <select name="cities" id="cities" v-if="cities"></select>
-            <input type="submit" value="Check weather">
-        </form>
+        <gmap-autocomplete  @place_changed="getWeather"></gmap-autocomplete>
     </div>
 </template>
 
@@ -18,28 +12,47 @@
         layout: 'default',
         data() {
             return {
-                places: this.$store.state.places,
-                cities: null,
+                // places: this.$store.state.places,
+                // countries: this.places.filter(country => country.country),
+                // cities: null,
+
             };
         },
-        beforeMount() {
+        computed:{
+            position() {
+                return {
+                    lat: 9.42344,
+                    lgn: 39.85390
+                };
+            },
+        },
+        created() {
             console.log(this);
         },
-        async asyncData({ store, req }) {
-            // Fetch data
-            console.log('async', store);
-            if (!store.state.places) await store.dispatch('getPlaces');
-            // Update data based on state
-            return {
-                from: req ? 'SERVER' : 'CLIENT',
-            };
-        },
+        // async asyncData({ store, req }) {
+        //     // Fetch data
+        //     console.log('async', store);
+        //     if (!store.state.places) await store.dispatch('getPlaces');
+        //     // Update data based on state
+        //     return {
+        //         from: req ? 'SERVER' : 'CLIENT',
+        //     };
+        // },
 
         methods: {
             getCountryCities(country) {
                 const cities = this.places.Filter(place => place.country.match(country));
                 this.cities = cities;
             },
+            getWeather(place) {
+                console.log(place);
+
+                this.position = {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng(),
+                };
+                this.emmit('userCity', position)
+            }
         },
     };
 </script>

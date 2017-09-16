@@ -28,6 +28,11 @@ module.exports = {
         '@nuxtjs/pwa',
         '@nuxtjs/axios',
     ],
+
+    plugins: [
+        { src: '~/plugins/google-maps.js', ssr: false },
+    ],
+
     env: {
         API_KEY: 'cecf2cdf0f3ee489ba06aff6db8cb201',
     },
