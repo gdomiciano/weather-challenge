@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <nuxt/>
-  </div>
+    <div>
+        <fixed-header/>
+        <nuxt/>
+    </div>
 </template>
 
 <style>
@@ -51,3 +52,13 @@ html
   background-color: #35495e;
 }
 </style>
+
+<script>
+    import FixedHeader from '~/components/FixedHeader.vue';
+    
+    export default {
+        components: {
+            FixedHeader,
+        }
+    };
+</script>

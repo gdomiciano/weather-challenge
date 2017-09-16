@@ -1,7 +1,7 @@
 <template>
     <section class="container">
         <div>
-            <logo/>
+            <weather-info />
             <city-form/>
             <h1 class="title">
                 NUXT
@@ -22,11 +22,14 @@
 </template>
 
 <script>
-    import Logo from '~/components/Logo.vue';
     import CityForm from '~/components/CityForm.vue';
+    import WeatherInfo from '~/components/WeatherInfo.vue';
 
     export default {
-        components: { Logo, CityForm },
+        components: {
+            CityForm,
+            WeatherInfo,
+        },
         data() {
             return {
                 online: true,
