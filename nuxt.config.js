@@ -27,8 +27,12 @@ module.exports = {
     modules: [
         '@nuxtjs/pwa',
         '@nuxtjs/axios',
+        '@nuxtjs/proxy',
     ],
-
+    proxy: [
+        ['/api', { target: 'http://api.openweathermap.org', pathRewrite: { '^/api': '/data/2.5' } }],
+        // ['/api', { target: 'http://samples.openweathermap.org', pathRewrite: { '^/api': '/data/2.5' } }]
+    ],
     plugins: [
         { src: '~/plugins/google-maps.js', ssr: false },
     ],

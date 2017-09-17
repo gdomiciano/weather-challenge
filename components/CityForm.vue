@@ -15,7 +15,7 @@
                 console.log(place);
                 const city = place.address_components[1].long_name;
                 const country = place.address_components[3].long_name;
-                this.emmit('selectedPlace', city, country);
+                this.$emmit('selectedPlace', city, country);
             }
         },
     };
