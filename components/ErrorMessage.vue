@@ -1,13 +1,13 @@
 <template>
     <div class="Error">
-        <p class="Error-message">Sorry, there is no weather information of {{place}}. Try another city.</p>
+        <p class="Error-message">{{message}}</p>
     </div>
 </template>
 
 <script>
     export default {
         name:'error-message',
-        props: ['place'],
+        props: ['message'],
     }
 </script>
 

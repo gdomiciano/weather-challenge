@@ -3,7 +3,7 @@
         <form class="City-form" v-on:submit.prevent>
             <gmap-autocomplete class="City-form--input" @place_changed="getWeather" :selectFirstOnEnter="selectFirst"></gmap-autocomplete>
         </form>
-        <error-message v-if="isError" :place="city"/>
+        <error-message v-if="isError" :message="message"/>
     </div>
 </template>
 
@@ -34,8 +34,14 @@
                     this.$emit('selectedPlace', city[0].long_name, country[0].short_name);
                 } else {
                     document.querySelector('.City-form--input').value = '';
-                    this.city = place.name || place.adr_address;
+                    
+                    const city = place.name || place.adr_address;
+                    this.message = `Sorry, there is no weather information of ${city}. Try another city.`
                     this.isError = !this.isError;
+
+                    setTimeout(() => {
+                        this.isError = !this.isError;
+                    }, 5000);
                 }
             }
         },

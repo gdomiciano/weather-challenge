@@ -2,8 +2,7 @@
     <section class="container">
         <div>
             <weather-info :info="weatherInfo" />
-            <!-- {{place}} -->
-            <city-form @selectedPlace="getCity"/>
+                        <city-form @selectedPlace="getCity"/>
             <current-location @userLocation="getUserLocation"/>
             <div :class="['network',online ? 'online' : 'offline']">
                 <div class="circle"></div>

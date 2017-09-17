@@ -1,26 +1,39 @@
 <template>
     <div>
         <button @click="getLocation">Weather from my location</button>
+        <error-message v-if="isError" :message="message"/>
+
     </div>
 </template>
 
 <script>
+    import ErrorMessage from '~/components/ErrorMessage.vue';
+
     export default {
         name: 'current-location',
+        data() {
+            return {
+                isError: false,
+            }
+        },
+        components: {
+            ErrorMessage,
+        },
         methods: {
-            getLocation(){
+            getLocation() {
 
-                const _this = this
-                function success(position) {
-                    console.log(position.coords)
-                     let lat = position.coords.latitude;
-                     let lon = position.coords.longitude;
-                     _this.$emit('userLocation', lat, lon);
-
+                const success = (position) => {
+                    let lat = position.coords.latitude;
+                    let lon = position.coords.longitude;
+                    this.$emit('userLocation', lat, lon);
                 }
 
-                function error() {
-                    console.log("Unable to retrieve your location");
+                const error = () => {
+                    this.message = "Unable to retrieve your location. Please, make sure your GPS is enabled";
+                    this.isError = !this.isError;
+                    setTimeout(() => {
+                        this.isError = !this.isError;
+                    }, 5000);
                 }
 
                 navigator.geolocation.getCurrentPosition(success, error);
