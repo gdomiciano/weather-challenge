@@ -23,19 +23,23 @@ const store = () => new Vuex.Store({
             // Always get places
             if (!state.places) await dispatch('getRandomPlace');
         },
-        async getRandomPlace({ commit }) {
+        async getRandomPlace({ commit, dispatch }) {
             const lat = Math.floor(Math.random() * (90 - (-90)) + (-90));
             const lon = Math.floor(Math.random() * (180 - (-180)) + (-180));
             const ramdomPlace = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
-            commit('GET_RANDOM_PLACE', ramdomPlace);
+            if (ramdomPlace.name) {
+                commit('GET_RANDOM_PLACE', ramdomPlace);
+            } else {
+                await dispatch('getRandomPlace');
+            }
         },
         async getSelectedPlace({ commit }) {
-            const places = await this.$axios.get('https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/static/city.list.json');
-            commit('GET_RANDOM_PLACE', places.data);
+            const city = await this.$axios.$get(`/weather?q=${city},${country}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
+            commit('GET_RANDOM_PLACE', city);
         },
         async getCurrentLocation({ commit }) {
-            const places = await this.$axios.get('https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/static/city.list.json');
-            commit('GET_RANDOM_PLACE', places.data);
+            const location = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
+            commit('GET_RANDOM_PLACE', location);
         },
     },
 });

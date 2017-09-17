@@ -1,7 +1,7 @@
 <template>
     <section class="container">
         <div>
-            <weather-info />
+            <weather-info :info="weatherInfo"/>
             <!-- {{place}} -->
             <city-form/>
             <div :class="['network',online ? 'online' : 'offline']">
@@ -29,6 +29,11 @@
             return {
                 online: true,
             };
+        },
+        computed: {
+            weatherInfo(){
+                return this.$store.state.randomPlace;
+            }
         },
         mounted() {
             if (!window.navigator) {
