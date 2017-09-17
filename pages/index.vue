@@ -1,9 +1,9 @@
 <template>
     <section class="container">
         <div>
-            <weather-info :info="weatherInfo"/>
+            <weather-info :info="weatherInfo" />
             <!-- {{place}} -->
-            <city-form/>
+            <city-form @selectedPlace="getCity"/>
             <div :class="['network',online ? 'online' : 'offline']">
                 <div class="circle"></div>
                 {{ online ? 'online' : 'offline' }}
@@ -48,6 +48,10 @@
             _toggleNetworkStatus({ type }) {
                 this.online = type === 'online';
             },
+            getCity(city, country){
+                console.log(city, country);
+                    // if (!state.places) await dispatch('getRandomPlace');
+            }
 
         },
         destroyed() {

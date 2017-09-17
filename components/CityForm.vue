@@ -13,9 +13,11 @@
         methods: {
             getWeather(place) {
                 console.log(place);
-                const city = place.address_components[1].long_name;
-                const country = place.address_components[3].long_name;
-                this.$emmit('selectedPlace', city, country);
+                let city = place.address_components.filter(item => item.types[0].match('administrative_area_level_2'));
+                if (city.length  === 0) city = place.address_components.filter(item => item.types[0].match('administrative_area_level_1'));
+                const country = place.address_components.filter(item => item.types[0].match('country'));
+                console.log(city, country)
+                this.$emit('selectedPlace', city[0].long_name, country[0].short_name);
             }
         },
     };

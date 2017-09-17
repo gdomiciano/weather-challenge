@@ -21,7 +21,7 @@ const store = () => new Vuex.Store({
     actions: {
         async nuxtServerInit({ dispatch, state }) {
             // Always get places
-            if (!state.places) await dispatch('getRandomPlace');
+            if (!state.randomPlace) await dispatch('getRandomPlace');
         },
         async getRandomPlace({ commit, dispatch }) {
             const lat = Math.floor(Math.random() * (90 - (-90)) + (-90));
