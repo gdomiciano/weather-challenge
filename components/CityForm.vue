@@ -1,23 +1,42 @@
 <template>
     <div>
-        <gmap-autocomplete @place_changed="getWeather"></gmap-autocomplete>
+        <form class="City-form" v-on:submit.prevent>
+            <gmap-autocomplete class="City-form--input" @place_changed="getWeather" :selectFirstOnEnter="selectFirst"></gmap-autocomplete>
+        </form>
+        <error-message v-if="isError" :place="city"/>
     </div>
 </template>
 
 <script>
+    import ErrorMessage from '~/components/ErrorMessage.vue';
 
-    import axios from 'axios'
     export default {
         name: 'city-form',
         layout: 'default',
+        components: {
+            ErrorMessage,
+        },
+        data() {
+            return {
+                selectFirst: true,
+                isError: false,
+            }
+        },
         methods: {
             getWeather(place) {
-                console.log(place);
-                let city = place.address_components.filter(item => item.types[0].match('administrative_area_level_2'));
-                if (city.length  === 0) city = place.address_components.filter(item => item.types[0].match('administrative_area_level_1'));
-                const country = place.address_components.filter(item => item.types[0].match('country'));
-                console.log(city, country)
-                this.$emit('selectedPlace', city[0].long_name, country[0].short_name);
+
+                if (place.address_components && place.address_components.length > 1) {
+                    let city = place.address_components.filter(item => item.types[0].match('administrative_area_level_2'));
+                    if (city.length  === 0) city = place.address_components.filter(item => item.types[0].match('administrative_area_level_1'));
+
+                    const country = place.address_components.filter(item => item.types[0].match('country'));
+
+                    this.$emit('selectedPlace', city[0].long_name, country[0].short_name);
+                } else {
+                    document.querySelector('.City-form--input').value = '';
+                    this.city = place.name || place.adr_address;
+                    this.isError = !this.isError;
+                }
             }
         },
     };

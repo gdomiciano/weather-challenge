@@ -7,5 +7,6 @@ Vue.use(VueGoogleMaps, {
     load: {
         key: mapsKey,
         libraries: 'places',
+        language: 'en',
     },
 });

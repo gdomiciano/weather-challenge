@@ -4,6 +4,7 @@
             <weather-info :info="weatherInfo" />
             <!-- {{place}} -->
             <city-form @selectedPlace="getCity"/>
+            <current-location @userLocation="getUserLocation"/>
             <div :class="['network',online ? 'online' : 'offline']">
                 <div class="circle"></div>
                 {{ online ? 'online' : 'offline' }}
@@ -19,20 +20,23 @@
 <script>
     import WeatherInfo from '~/components/WeatherInfo.vue';
     import CityForm from '~/components/CityForm.vue';
+    import CurrentLocation from '~/components/CurrentLocation.vue';
 
     export default {
         components: {
             CityForm,
             WeatherInfo,
+            CurrentLocation,
         },
         data() {
             return {
                 online: true,
+                isError: false,
             };
         },
         computed: {
             weatherInfo(){
-                return this.$store.state.randomPlace;
+                return this.$store.state.place;
             },
         },
         mounted() {
@@ -49,7 +53,14 @@
                 this.online = type === 'online';
             },
             getCity: async function(city, country) {
-                if (!this.$store.state.selectedPlace) await this.$store.dispatch('getSelectedPlace', city, country);
+                await this.$store.dispatch('getSelectedPlace', city, country);
+            },
+            getUserLocation: async function(lat, lon) {
+                const position = {
+                    lat:lat,
+                    lon:lon
+                }
+                await this.$store.dispatch('getCurrentLocation', position, lon);
             },
 
         },

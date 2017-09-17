@@ -7,19 +7,13 @@ const store = () => new Vuex.Store({
     },
     mutations: {
         GET_PLACE_WEATHER(state, model) {
-            this.state.randomPlace = model;
+            this.state.place = model;
         },
-        // GET_SELECTED_PLACE(state, model) {
-        //     this.state.selectedPlace = model;
-        // },
-        // GET_CURRENT_LOCATION(state, model) {
-        //     this.state.currentLocation = model;
-        // },
     },
     actions: {
         async nuxtServerInit({ dispatch, state }) {
             // Always get places
-            if (!state.randomPlace) await dispatch('getRandomPlace');
+            if (!state.place) await dispatch('getRandomPlace');
         },
         async getRandomPlace({ commit, dispatch }) {
             const lat = Math.floor(Math.random() * (90 - (-90)) + (-90));
@@ -31,12 +25,14 @@ const store = () => new Vuex.Store({
                 await dispatch('getRandomPlace');
             }
         },
+
         async getSelectedPlace({ commit }, city, country) {
             const userCity = await this.$axios.$get(`/weather?q=${city},${country}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
             commit('GET_PLACE_WEATHER', userCity);
         },
-        async getCurrentLocation({ commit }) {
-            const location = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
+
+        async getCurrentLocation({ commit }, position) {
+            const location = await this.$axios.$get(`/weather?lat=${position.lat}&lon=${position.lon}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
             commit('GET_PLACE_WEATHER', location);
         },
     },
