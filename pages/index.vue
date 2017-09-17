@@ -33,7 +33,7 @@
         computed: {
             weatherInfo(){
                 return this.$store.state.randomPlace;
-            }
+            },
         },
         mounted() {
             if (!window.navigator) {
@@ -48,31 +48,15 @@
             _toggleNetworkStatus({ type }) {
                 this.online = type === 'online';
             },
-            getCity(city, country){
-                console.log(city, country);
-                    // if (!state.places) await dispatch('getRandomPlace');
-            }
+            getCity: async function(city, country) {
+                if (!this.$store.state.selectedPlace) await this.$store.dispatch('getSelectedPlace', city, country);
+            },
 
         },
         destroyed() {
             window.removeEventListener('offline', this._toggleNetworkStatus);
             window.removeEventListener('online', this._toggleNetworkStatus);
         },
-//         async asyncData ({ params }) {
-//     let { data } = await axios.get(`https://my-api/posts/${params.id}`)
-//     return { title: data.title }
-//   }
-        // async asyncData ({ app, commit }) {
-        //     const lat = Math.random(-90, 90);
-        //     const lon = Math.random(-180, 180);
-        //     console.log(app, lat, lon);
-        //     // const { places } = await app.$axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=91.5&lon=43.3&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
-        //     const { places } = await app.$axios.get(`http://samples.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b1b15e88fa797225412429c1c50c122a1`);
-        //     console.log(places);
-        //     return {
-        //         place: places,
-        //     };
-        // },
     };
 </script>
 
