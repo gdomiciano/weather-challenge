@@ -14,32 +14,31 @@
         data() {
             return {
                 isError: false,
-            }
+            };
         },
         components: {
             ErrorMessage,
         },
         methods: {
             getLocation() {
-
                 const success = (position) => {
-                    let lat = position.coords.latitude;
-                    let lon = position.coords.longitude;
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
                     this.$emit('userLocation', lat, lon);
-                }
+                };
 
                 const error = () => {
-                    this.message = "Unable to retrieve your location. Please, make sure your GPS is enabled";
+                    this.message = 'Unable to retrieve your location. Please, make sure your GPS is enabled';
                     this.isError = !this.isError;
                     setTimeout(() => {
                         this.isError = !this.isError;
                     }, 5000);
-                }
+                };
 
                 navigator.geolocation.getCurrentPosition(success, error);
-            }
+            },
         },
-    }
+    };
 </script>
 
 <style scoped>

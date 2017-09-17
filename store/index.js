@@ -16,8 +16,10 @@ const store = () => new Vuex.Store({
             if (!state.place) await dispatch('getRandomPlace');
         },
         async getRandomPlace({ commit, dispatch }) {
+            /*eslint-disable */
             const lat = Math.floor(Math.random() * (90 - (-90)) + (-90));
             const lon = Math.floor(Math.random() * (180 - (-180)) + (-180));
+            /*eslint-enable */
             const ramdomPlace = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
             if (ramdomPlace.name) {
                 commit('GET_PLACE_WEATHER', ramdomPlace);

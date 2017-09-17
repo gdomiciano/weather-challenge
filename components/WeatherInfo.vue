@@ -18,9 +18,13 @@
     export default {
         name: 'weather-info',
         props: ['info'],
-    }
+    };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+    .Weather{
+        border-bottom: none;
+
+    }
 
 </style>

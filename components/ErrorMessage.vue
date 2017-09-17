@@ -6,9 +6,9 @@
 
 <script>
     export default {
-        name:'error-message',
+        name: 'error-message',
         props: ['message'],
-    }
+    };
 </script>
 
 <style scoped>
