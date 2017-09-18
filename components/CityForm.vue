@@ -1,6 +1,7 @@
 <template>
-    <div>
+    <div class="City">
         <form class="City-form" v-on:submit.prevent>
+            <label class="City-form--label">Get weather from specific city:</label>
             <gmap-autocomplete class="City-form--input" @place_changed="getWeather" :selectFirstOnEnter="selectFirst"></gmap-autocomplete>
         </form>
         <error-message v-if="isError" :message="message"/>
@@ -12,16 +13,20 @@
 
     export default {
         name: 'city-form',
+
         layout: 'default',
+
         components: {
             ErrorMessage,
         },
+
         data() {
             return {
                 selectFirst: true,
                 isError: false,
             };
         },
+
         methods: {
             getWeather(place) {
                 if (place.address_components && place.address_components.length > 1) {
@@ -32,8 +37,6 @@
 
                     this.$emit('selectedPlace', city[0].long_name, country[0].short_name);
                 } else {
-                    document.querySelector('.City-form--input').value = '';
-    
                     const city = place.name || place.adr_address;
                     this.message = `Sorry, there is no weather information of ${city}. Try another city.`;
                     this.isError = !this.isError;
@@ -42,11 +45,38 @@
                         this.isError = !this.isError;
                     }, 5000);
                 }
+                document.querySelector('.City-form--input').value = '';
             },
         },
     };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+    @import '~assets/scss/colors';
 
+    .City {
+        margin: 0 10px 30px;
+    }
+
+    .City-form--label,
+    .City-form--input {
+        display: inline-block;
+        font-size: 20px;
+
+    }
+
+    .City-form--label {
+        margin-bottom: 10px;
+    }
+
+    .City-form--input {
+        line-height: 35px;
+        padding: 0 5px;
+        width: 100%;
+
+        &:focus {
+            border: color($theme-blue, 50) 1px solid;
+            outline-color: color($theme-blue, 900);
+        }
+    }
 </style>
