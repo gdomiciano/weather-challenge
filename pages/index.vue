@@ -19,11 +19,13 @@
             CurrentLocation,
             WeatherInfo,
         },
+    
         computed: {
             weatherInfo() {
                 return this.$store.state.place;
             },
         },
+
         methods: {
             async getCity(city, country) {
                 await this.$store.dispatch('getSelectedPlace', city, country);
@@ -32,7 +34,6 @@
                 const position = { lat, lon };
                 await this.$store.dispatch('getCurrentLocation', position);
             },
-
         },
     };
 </script>

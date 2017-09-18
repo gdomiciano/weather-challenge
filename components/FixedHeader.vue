@@ -5,8 +5,8 @@
 </template>
 
 <script>
-    import logo from '~/assets/icon/logo.svg';
     import Icon from '~/components/icon.vue';
+    import logo from '~/assets/icon/logo.svg';
 
     export default {
         name: 'fixed-header',

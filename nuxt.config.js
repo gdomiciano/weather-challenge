@@ -30,7 +30,7 @@ module.exports = {
     },
 
     head: {
-        title: 'Weather Challenge - Kloeckner',
+        title: 'Weather Challenge - Klöeckner',
     },
 
     loading: { color: '#F3C80F' },
