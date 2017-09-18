@@ -1,6 +1,6 @@
 <template>
     <header class="Header">
-        <h1 class="Header-brand"><icon class="Header-icon" :glyph="logo" width="60" height="60"/> Wheather</h1>
+        <h1 class="Header-brand"><icon class="Header-icon" :glyph="logo" width="50" height="50" /> Wheather</h1>
     </header>
 </template>
 
@@ -33,17 +33,16 @@
         padding: 0 10px;
         position: fixed;
         width: 100%;
+        text-align: center;
     }
 
     .Header-brand {
         color: color($white);
-        display: flex;
         line-height: 60px;
-        width: 100%;
     }
 
     .Header-icon {
-        margin-right: 10px;
+        margin-right: 5px;
     }
 
 </style>

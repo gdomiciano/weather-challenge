@@ -9,12 +9,10 @@ const store = () => new Vuex.Store({
 
     mutations: {
         GET_PLACE_WEATHER(state, model) {
-            console.log(model.main.temp);
             /*eslint-disable */
             model.main.temp = Math.floor(model.main.temp);
             model.main.temp_min = Math.floor(model.main.temp_min);
             model.main.temp_max = Math.floor(model.main.temp_max);
-
             /*eslint-enable */
             this.state.place = model;
         },
@@ -25,6 +23,7 @@ const store = () => new Vuex.Store({
             // Always get places
             if (!state.place) await dispatch('getRandomPlace');
         },
+
         async getRandomPlace({ commit, dispatch }) {
             /*eslint-disable */
             const lat = Math.floor(Math.random() * (90 - (-90)) + (-90));

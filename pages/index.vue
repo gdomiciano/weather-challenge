@@ -53,16 +53,18 @@
 
        &::before,
        &::after {
+            border-top: color($theme-yellow, 900) 1px solid;
             content: "";
             display: block;
-            border-top: 1px solid #f3c80f;
             width: 20%;
             position: absolute;
             top: 10px;
        }
+
        &::before{
             left: 25%;
        }
+
        &::after{
             right: 25%;
        }

@@ -52,6 +52,7 @@
     @import '~assets/scss/colors';
 
     .Weather {
+        background-color: color($white);
         border: color($theme-yellow, 50) 2px inset;
         box-shadow: 0 0 5px 0px color($black);
         margin: 0 10px 40px;
@@ -74,19 +75,19 @@
     }
 
     .Weather-info--current {
-        font-size: 40px;
+        font-size: 55px;
+        font-weight: 700;
     }
 
     .Weather-info--extremes {
-        font-size: 22px;
+        font-size: 25px;
         margin-bottom: 20px;
     }
 
     [class$="--title"] {
         color: color($theme-blue, 900);
-        font-size: 20px;
+        font-size: 22px;
         margin-bottom: 10px;
-        text-align: left;
     }
 
     .Weather-icon--min {

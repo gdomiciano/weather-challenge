@@ -62,11 +62,7 @@
     .City-form--input {
         display: inline-block;
         font-size: 20px;
-
-    }
-
-    .City-form--label {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
     .City-form--input {

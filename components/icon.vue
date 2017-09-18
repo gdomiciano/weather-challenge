@@ -19,5 +19,6 @@
     .icon {
         background: transparent no-repeat;
         display: inline-block;
+        vertical-align: middle;
     }
 </style>
