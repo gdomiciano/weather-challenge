@@ -3,6 +3,7 @@
         <div>
             <weather-info :info="weatherInfo" />
             <city-form @selectedPlace="getCity" />
+            <div class="Separator"><p class="Separator-text">or</p></div>
             <current-location @userLocation="getUserLocation" />
         </div>
     </section>
@@ -19,7 +20,7 @@
             CurrentLocation,
             WeatherInfo,
         },
-    
+
         computed: {
             weatherInfo() {
                 return this.$store.state.place;
@@ -40,9 +41,36 @@
 
 <style lang="scss">
     @import '~assets/scss/mixins';
+    @import '~assets/scss/colors';
 
     .Content {
         @include center-vertical;
+    }
+
+    .Separator {
+       margin-bottom: 30px;
+       position: relative;
+
+       &::before,
+       &::after {
+            content: "";
+            display: block;
+            border-top: 1px solid #f3c80f;
+            width: 20%;
+            position: absolute;
+            top: 10px;
+       }
+       &::before{
+            left: 25%;
+       }
+       &::after{
+            right: 25%;
+       }
+    }
+
+    .Separator-text {
+        color: color($theme-blue, 900);
+        font-size: 18px;
     }
 
 </style>
