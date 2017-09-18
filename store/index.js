@@ -1,10 +1,12 @@
 import Vuex from 'vuex';
 
+const API_ID = 'cecf2cdf0f3ee489ba06aff6db8cb201';
 const store = () => new Vuex.Store({
 
     state: {
         place: null,
     },
+
     mutations: {
         GET_PLACE_WEATHER(state, model) {
             console.log(model.main.temp);
@@ -17,6 +19,7 @@ const store = () => new Vuex.Store({
             this.state.place = model;
         },
     },
+
     actions: {
         async nuxtServerInit({ dispatch, state }) {
             // Always get places
@@ -27,7 +30,7 @@ const store = () => new Vuex.Store({
             const lat = Math.floor(Math.random() * (90 - (-90)) + (-90));
             const lon = Math.floor(Math.random() * (180 - (-180)) + (-180));
             /*eslint-enable */
-            const ramdomPlace = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
+            const ramdomPlace = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_ID}`);
             if (ramdomPlace.name) {
                 commit('GET_PLACE_WEATHER', ramdomPlace);
             } else {
@@ -36,12 +39,12 @@ const store = () => new Vuex.Store({
         },
 
         async getSelectedPlace({ commit }, city, country) {
-            const userCity = await this.$axios.$get(`/weather?q=${city},${country}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
+            const userCity = await this.$axios.$get(`/weather?q=${city},${country}&units=metric&appid=${API_ID}`);
             commit('GET_PLACE_WEATHER', userCity);
         },
 
         async getCurrentLocation({ commit }, position) {
-            const location = await this.$axios.$get(`/weather?lat=${position.lat}&lon=${position.lon}&units=metric&appid=cecf2cdf0f3ee489ba06aff6db8cb201`);
+            const location = await this.$axios.$get(`/weather?lat=${position.lat}&lon=${position.lon}&units=metric&appid=${API_ID}`);
             commit('GET_PLACE_WEATHER', location);
         },
     },

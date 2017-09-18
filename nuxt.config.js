@@ -17,7 +17,6 @@ module.exports = {
                 });
             }
 
-            // Overwrite default SVG rule
             const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
             urlLoader.test = /\.(png|jpe?g|gif)$/;
             // Add SVG rule
@@ -52,12 +51,15 @@ module.exports = {
         '@nuxtjs/axios',
         '@nuxtjs/proxy',
     ],
+
     proxy: [
         ['/api', { target: 'http://api.openweathermap.org', pathRewrite: { '^/api': '/data/2.5' } }],
     ],
+
     plugins: [
         { src: '~/plugins/google-maps.js', ssr: false },
     ],
+
     render: {
         static: {
             maxAge: '1y',
@@ -67,8 +69,5 @@ module.exports = {
                 }
             },
         },
-    },
-    env: {
-        API_KEY: 'cecf2cdf0f3ee489ba06aff6db8cb201',
     },
 };
