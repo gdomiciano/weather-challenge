@@ -1,6 +1,6 @@
 <template>
     <header class="Header">
-        <h1 class="Header-brand"><icon class="Header-icon" :glyph="logo" width="50" height="50" /> Wheather</h1>
+        <h1 class="Header-brand"><icon class="Header-icon" :glyph="logo" width="50" height="50" /> Weather</h1>
     </header>
 </template>
 

@@ -21,3 +21,8 @@ dist
 static/manifest*.json
 static/sw.js
 static/workbox-sw*.js
+
+#test
+test/e2e/reports
+test/e2e/screenshots
+.chromedriver.log
