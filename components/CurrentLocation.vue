@@ -1,7 +1,7 @@
 <template>
     <div class="Location">
         <button class="Location-button" @click="getLocation"><icon class="Location-icon" :glyph="location" width="30" height="30"/> Get weather from current location</button>
-        <error-message v-if="isError" :message="message"/>
+        <error-message class="Location-error" v-if="isError" :message="message"/>
 
     </div>
 </template>

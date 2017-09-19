@@ -31,6 +31,7 @@ const store = () => new Vuex.Store({
             /*eslint-enable */
             const ramdomPlace = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_ID}`);
             if (ramdomPlace.name) {
+                ramdomPlace.type = 'random';
                 commit('GET_PLACE_WEATHER', ramdomPlace);
             } else {
                 await dispatch('getRandomPlace');
@@ -39,11 +40,13 @@ const store = () => new Vuex.Store({
 
         async getSelectedPlace({ commit }, city, country) {
             const userCity = await this.$axios.$get(`/weather?q=${city},${country}&units=metric&appid=${API_ID}`);
+            userCity.type = 'city';
             commit('GET_PLACE_WEATHER', userCity);
         },
 
         async getCurrentLocation({ commit }, position) {
             const location = await this.$axios.$get(`/weather?lat=${position.lat}&lon=${position.lon}&units=metric&appid=${API_ID}`);
+            location.type = 'geolocation';
             commit('GET_PLACE_WEATHER', location);
         },
     },

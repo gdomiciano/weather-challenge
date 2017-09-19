@@ -4,7 +4,7 @@
             <label class="City-form--label">Get weather from specific city:</label>
             <gmap-autocomplete class="City-form--input" @place_changed="getWeather" :selectFirstOnEnter="selectFirst"></gmap-autocomplete>
         </form>
-        <error-message v-if="isError" :message="message"/>
+        <error-message cass="City-error" v-if="isError" :message="message"/>
     </div>
 </template>
 
