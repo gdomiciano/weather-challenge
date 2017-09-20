@@ -40,7 +40,7 @@ module.exports = {
         start_url: '.',
         display: 'fullscreen',
         background_color: '#000000',
-        description: '',
+        description: 'PWA weather challenge for Klöeckner',
         lang: 'en',
         orientation: 'portrait',
         theme_color: '#0077AA',
@@ -59,15 +59,4 @@ module.exports = {
     plugins: [
         { src: '~/plugins/google-maps.js', ssr: false },
     ],
-
-    render: {
-        static: {
-            maxAge: '1y',
-            setHeaders(res, path) {
-                if (path.includes('sw.js')) {
-                    res.setHeader('Cache-Control', 'public, max-age=0');
-                }
-            },
-        },
-    },
 };
