@@ -12,7 +12,7 @@ The application is integrated with [Open Weather Map API](http://openweathermap.
 * Fetches city weather information previously typed/selected on Google Autocomplete field
 * Fetches the weather information based on user's location after given permission. (support: Chrome and Safari)
 
-![Image](https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/assets/screenshots/load.png) ![Image](https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/assets/screenshots/search.png) ![Image](https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/assets/screenshots/error.png)
+![Image](https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/assets/screenshots/load.png) ![Image](https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/assets/screenshots/search.png) ![Image](https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/assets/screenshots/error.png) ![Image](https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/assets/screenshots/location.png)
 
 ## Install
 - Clone the project: `git clone https://github.com/gdomiciano/weather-challenge.git`
