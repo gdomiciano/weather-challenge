@@ -21,7 +21,8 @@
     "chromedriver": "chromedriver --url-base=/wd/hub --verbose --log-path=chromedriver.log",
     "test": "npm run test:components && npm run test:integration",
     "test:components": "nightwatch --config test/e2e/nightwatch.conf.js -g test/e2e/specs/components/",
-    "test:integration": "nightwatch --config test/e2e/nightwatch.conf.js  -g test/e2e/specs/integration"
+    "test:integration": "nightwatch --config test/e2e/nightwatch.conf.js  -g test/e2e/specs/integration",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -34,6 +35,7 @@
     "eslint-plugin-promise": "^3.4.1",
     "nightwatch": "^0.9.16",
     "node-sass": "^4.5.3",
+    "push-dir": "^0.4.1",
     "sass-loader": "^6.0.6",
     "svg-sprite-loader": "^3.2.5",
     "vue2-google-maps": "^0.8.2"
