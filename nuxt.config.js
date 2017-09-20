@@ -26,6 +26,8 @@ module.exports = {
             });
         },
 
+        publicPath: '/',
+
     },
 
     head: {
