@@ -21,8 +21,8 @@ The application is integrated with [Open Weather Map API](http://openweathermap.
 
 ## Usage
 To see this project running locally:
-- execute `npm run dev` or `yarn dev`
-- access [localhost:3000](http://localhost:3000)
+- Execute `npm run dev` or `yarn dev`
+- Access [localhost:3000](http://localhost:3000)
 
 ## Required Features
 
@@ -68,12 +68,13 @@ Once you have it installed, you should open two different tabs on your terminal:
 
 ## Todo
 During the development I have created [Github Projects](https://github.com/gdomiciano/weather-challenge/projects/1) to Kanban Board to organize my development process:
-    - **Backlog**: indicates features/improvements that will be developed after the MVP
-    - **ToDo**: showd all features have to be delivered for the MVP
-    - **In Progress**: tasks that are being developed
-    - **Tests**: tasks that are totally developed, however must contain tests
-    - **Done**: expose all tasks that are developed and tested.
-    - **Published**: This column is enabled after the first deploy, it contains all tasks that are in production environment
+
+- **Backlog**: indicates features/improvements that will be developed after the MVP
+- **ToDo**: showd all features have to be delivered for the MVP
+- **In Progress**: tasks that are being developed
+- **Tests**: tasks that are totally developed, however must contain tests
+- **Done**: expose all tasks that are developed and tested.
+- **Published**: This column is enabled after the first deploy, it contains all tasks that are in production environment
 
 ![Image](https://raw.githubusercontent.com/gdomiciano/weather-challenge/develop/assets/screenshots/github-projects.png)
 
