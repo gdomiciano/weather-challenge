@@ -27,9 +27,9 @@
 </template>
 
 <script>
-    import Icon from '~/components/icon.vue';
-    import tempMax from '~/assets/icon/temp-max.svg';
-    import tempMin from '~/assets/icon/temp-min.svg';
+    import Icon from '~/components/Icon.vue';
+    import tempMax from '~/assets/svg/temp-max.svg';
+    import tempMin from '~/assets/svg/temp-min.svg';
 
     export default {
         name: 'weather-info',
