@@ -4,7 +4,7 @@ module.exports = {
         vendor: [
             'axios',
         ],
-        
+
         extend(config, ctx) {
             if (ctx.isClient) {
                 config.module.rules.push({
@@ -38,14 +38,7 @@ module.exports = {
     loading: { color: '#F3C80F' },
 
     manifest: {
-        name: 'Weather Challenge',
-        // short_name: 'Weather',
-        // display: 'fullscreen',
-        // background_color: '#000000',
-        // description: 'PWA weather challenge for Klöeckner',
-        // lang: 'en',
-        // orientation: 'portrait',
-        // theme_color: '#0077AA',
+        name: 'Weather Chalenge',
     },
 
     modules: [
