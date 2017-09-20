@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
 
     build: {
@@ -18,13 +20,36 @@ module.exports = {
                 });
             }
 
-            const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
-            urlLoader.test = /\.(png|jpe?g|gif)$/;
+
+            // get and remove file loader
+            const rule = config.module.rules.find(r => r.test.toString() === '/\\.(png|jpe?g|gif|svg)$/');
+            config.module.rules.splice(config.module.rules.indexOf(rule), 1);
+
+            // add it again, but now without 'assets\/svg'
+            config.module.rules.push({
+                test: /\.(png|jpe?g|gif|svg)$/,
+                loader: 'url-loader',
+                exclude: /(assets\/svg)/,
+                query: {
+                    limit: 1000, // 1KO
+                    name: 'img/[name].[hash:7].[ext]',
+                },
+            });
 
             config.module.rules.push({
                 test: /\.svg$/,
-                loader: 'svg-sprite-loader',
+                include: [
+                    path.resolve(__dirname, 'assets/svg'),
+                ],
+                use: 'svg-sprite-loader',
             });
+            // const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
+            // urlLoader.test = /\.(png|jpe?g|gif)$/;
+
+            // config.module.rules.push({
+            //     test: /\.svg$/,
+            //     loader: 'svg-sprite-loader',
+            // });
         },
 
         publicPath: 'https://gdomiciano.github.io/weather-challenge/',
@@ -38,7 +63,14 @@ module.exports = {
     loading: { color: '#F3C80F' },
 
     manifest: {
-        name: 'Weather Chalenge',
+        name: 'Weather Challenge',
+        short_name: 'Weather',
+        display: 'fullscreen',
+        background_color: '#000000',
+        description: 'PWA weather challenge for Klöeckner',
+        lang: 'en',
+        orientation: 'portrait',
+        theme_color: '#0077AA',
     },
 
     modules: [
