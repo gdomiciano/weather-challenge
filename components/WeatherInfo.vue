@@ -12,13 +12,13 @@
         </div>
         <div class="Weather-info--aditional">
             <p class="Weather-info--extremes">
+                <icon class="Weather-icon--min" :glyph="tempMin" width="24" height="24"/>
                 <span class="Weather-info--min">
-                    <icon class="Weather-icon--min" :glyph="tempMin" width="24" height="24"/>
                     {{info.main.temp_min}}{{degreeSign}}{{unit}}
                 </span>
                  |
+                <icon class="Weather-icon--max" :glyph="tempMax" width="24" height="24"/>
                 <span class="Weather-info--max">
-                    <icon class="Weather-icon--max" :glyph="tempMax" width="24" height="24"/>
                     {{info.main.temp_max}}{{degreeSign}}{{unit}}
                 </span>
             </p>
@@ -28,8 +28,8 @@
 
 <script>
     import Icon from '~/components/Icon.vue';
-    import tempMax from '~/assets/svg/temp-max.svg';
-    import tempMin from '~/assets/svg/temp-min.svg';
+    import tempMax from '~/assets/svg/tempmax.svg';
+    import tempMin from '~/assets/svg/tempmin.svg';
 
     export default {
         name: 'weather-info',
