@@ -35,10 +35,11 @@ To see this project running locally:
 ## Tests
 This project contains End to End tests that are used to test components on initial loading and also for integration tests. Tests were developed using [Nightwatch.js](http://nightwatchjs.org/) and [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/) running into a [Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome) without any Java/Selenium dependency, which means it is already preconfigured to run into CI server.
 
-**How tests were developed**
-   I have created two different type of tests: components and integration; Components are responsible for guarantee if component is rendering correctly and has all needed information, while Integration tests are used to test a whole flow, and scenarios, e.g. look for existent and inexistent city, this kind of test is also important to be implemented on CI server.
+### How tests were developed
 
-    The test folder structure looks like:
+   I have created two different type of tests: components and integration; Components are responsible for guarantee if component is rendering correctly and has all needed information, while Integration tests are used to test a whole flow, and scenarios, e.g. look for existent and inexistent city, this kind of test is also important to be implemented on CI server.
+   The test folder structure looks like:
+
    ```
    test
    |- e2e
@@ -52,7 +53,8 @@ This project contains End to End tests that are used to test components on initi
        |- nightwatch.conf.js
    ```
 
-**Execute tests**
+### Execute tests**
+
 As mentioned before, this tests were based on Chromedriver and Headless Chrome, which means that now they are dependencies, fortunately the Chromedriver can be installed via NPM and it is already into the project, although chrome has to be installed according to your Operating System:
    - **OSX:** install [Chrome Canary](https://www.google.com/chrome/browser/canary.html?platform=mac)
    - **Linux:** install the latest version of [Chrome](https://www.google.com/chrome/browser/desktop/index.html) or [Chromium](https://www.chromium.org/getting-involved/download-chromium)
