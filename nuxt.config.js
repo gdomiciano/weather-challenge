@@ -37,7 +37,6 @@ module.exports = {
     manifest: {
         name: 'Weather Challenge',
         short_name: 'Weather',
-        start_url: '.',
         display: 'fullscreen',
         background_color: '#000000',
         description: 'PWA weather challenge for Klöeckner',
