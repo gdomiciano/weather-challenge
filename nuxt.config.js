@@ -27,7 +27,7 @@ module.exports = {
             });
         },
 
-        publicPath: '/',
+        publicPath: 'https://gdomiciano.github.io/weather-challenge/',
 
     },
 
