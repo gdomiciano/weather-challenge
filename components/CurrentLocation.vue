@@ -8,8 +8,8 @@
 
 <script>
     import ErrorMessage from '~/components/ErrorMessage.vue';
-    import Icon from '~/components/icon.vue';
-    import location from '~/assets/icon/location.svg';
+    import Icon from '~/components/Icon.vue';
+    import location from '~/assets/svg/location.svg';
 
     export default {
         name: 'current-location',

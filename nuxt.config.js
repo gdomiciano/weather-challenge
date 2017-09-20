@@ -4,6 +4,7 @@ module.exports = {
         vendor: [
             'axios',
         ],
+
         extend(config, ctx) {
             if (ctx.isClient) {
                 config.module.rules.push({
@@ -19,12 +20,14 @@ module.exports = {
 
             const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
             urlLoader.test = /\.(png|jpe?g|gif)$/;
-            // Add SVG rule
+
             config.module.rules.push({
                 test: /\.svg$/,
                 loader: 'svg-sprite-loader',
             });
         },
+
+        publicPath: 'https://gdomiciano.github.io/weather-challenge/',
 
     },
 
@@ -37,7 +40,6 @@ module.exports = {
     manifest: {
         name: 'Weather Challenge',
         short_name: 'Weather',
-        start_url: '.',
         display: 'fullscreen',
         background_color: '#000000',
         description: 'PWA weather challenge for Klöeckner',
