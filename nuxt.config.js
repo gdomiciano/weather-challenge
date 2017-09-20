@@ -4,6 +4,7 @@ module.exports = {
         vendor: [
             'axios',
         ],
+        
         extend(config, ctx) {
             if (ctx.isClient) {
                 config.module.rules.push({
@@ -11,15 +12,15 @@ module.exports = {
                     test: /\.(js|vue)$/,
                     loader: 'eslint-loader',
                     exclude: /(node_modules)/,
-                    options: {
-                        fix: true,
-                    },
+                    // options: {
+                    //     fix: true,
+                    // },
                 });
             }
 
             const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
             urlLoader.test = /\.(png|jpe?g|gif)$/;
-            // Add SVG rule
+
             config.module.rules.push({
                 test: /\.svg$/,
                 loader: 'svg-sprite-loader',
