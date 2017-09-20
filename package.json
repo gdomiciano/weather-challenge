@@ -19,7 +19,9 @@
     "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "chromedriver": "chromedriver --url-base=/wd/hub --verbose --log-path=chromedriver.log",
-    "test": "nightwatch --config test/e2e/nightwatch.conf.js"
+    "test": "npm run test:components && npm run test:integration",
+    "test:components": "nightwatch --config test/e2e/nightwatch.conf.js -g test/e2e/specs/components/",
+    "test:integration": "nightwatch --config test/e2e/nightwatch.conf.js  -g test/e2e/specs/integration"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

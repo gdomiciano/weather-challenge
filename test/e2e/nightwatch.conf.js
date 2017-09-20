@@ -25,6 +25,7 @@ module.exports = {
             },
             globals: {
                 timeOut: 2000,
+                asyncTimeOut: 5000,
                 devServerURL: 'http://localhost:3000',
             },
             desiredCapabilities: {

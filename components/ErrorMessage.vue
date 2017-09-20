@@ -1,5 +1,5 @@
 <template>
-    <div class="Error">
+    <div>
         <p class="Error-message">{{message}}</p>
     </div>
 </template>

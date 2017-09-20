@@ -28,8 +28,8 @@
         },
 
         methods: {
-            async getCity(city, country) {
-                await this.$store.dispatch('getSelectedPlace', city, country);
+            async getCity(params) {
+                await this.$store.dispatch('getSelectedPlace', params);
             },
             async getUserLocation(lat, lon) {
                 const position = { lat, lon };

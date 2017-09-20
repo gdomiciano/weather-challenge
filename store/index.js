@@ -38,8 +38,8 @@ const store = () => new Vuex.Store({
             }
         },
 
-        async getSelectedPlace({ commit }, city, country) {
-            const userCity = await this.$axios.$get(`/weather?q=${city},${country}&units=metric&appid=${API_ID}`);
+        async getSelectedPlace({ commit }, params) {
+            const userCity = await this.$axios.$get(`/weather?q=${params.city},${params.country}&units=metric&appid=${API_ID}`);
             userCity.type = 'city';
             commit('GET_PLACE_WEATHER', userCity);
         },
