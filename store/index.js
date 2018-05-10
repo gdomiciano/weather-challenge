@@ -13,7 +13,7 @@ const store = () => new Vuex.Store({
             model.main.temp = Math.floor(model.main.temp);
             model.main.temp_min = Math.floor(model.main.temp_min);
             model.main.temp_max = Math.floor(model.main.temp_max);
-            /*eslint-enable */
+            /* eslint-enable */
             this.state.place = model;
         },
     },
@@ -28,7 +28,7 @@ const store = () => new Vuex.Store({
             /*eslint-disable */
             const lat = Math.floor(Math.random() * (90 - (-90)) + (-90));
             const lon = Math.floor(Math.random() * (180 - (-180)) + (-180));
-            /*eslint-enable */
+            /* eslint-enable */
             const ramdomPlace = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_ID}`);
             if (ramdomPlace.name) {
                 ramdomPlace.type = 'random';
