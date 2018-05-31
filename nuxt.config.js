@@ -52,6 +52,7 @@ module.exports = {
         '@nuxtjs/pwa',
         '@nuxtjs/axios',
         '@nuxtjs/proxy',
+        '@nuxtjs/workbox',
     ],
 
     proxy: [
