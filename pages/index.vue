@@ -17,6 +17,7 @@
 import CityForm from '~/components/CityForm.vue'
 import CurrentLocation from '~/components/CurrentLocation.vue'
 import WeatherInfo from '~/components/WeatherInfo.vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -26,9 +27,9 @@ export default {
   },
 
   computed: {
-    weatherInfo () {
-      return this.$store.state.place
-    }
+    ...mapGetters ({
+      'weatherInfo'
+    })
   },
 
   methods: {

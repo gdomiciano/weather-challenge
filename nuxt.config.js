@@ -1,5 +1,4 @@
 process.env.DEBUG = 'nuxt:*'
-console.log(process.env, process.NODE_ENV)
 export default {
   build: {
     extend (config, { isDev, isClient }) {
