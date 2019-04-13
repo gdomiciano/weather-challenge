@@ -1,51 +1,64 @@
 <template>
-    <div class="Location">
-        <button class="Location-button" @click="getLocation"><icon class="Location-icon" :glyph="location" width="30" height="30"/> Get weather from current location</button>
-        <error-message class="Location-error" v-if="isError" :message="message"/>
-
-    </div>
+  <div class="Location">
+    <button
+      class="Location-button"
+      @click="getLocation"
+    >
+      <icon
+        class="Location-icon"
+        :glyph="location"
+        width="30"
+        height="30"
+      /> Get weather from current location
+    </button>
+    <error-message
+      v-if="isError"
+      class="Location-error"
+      :message="message"
+    />
+  </div>
 </template>
 
 <script>
-    import ErrorMessage from '~/components/ErrorMessage.vue';
-    import Icon from '~/components/Icon.vue';
-    import location from '~/assets/svg/location.svg';
+import ErrorMessage from '~/components/ErrorMessage.vue'
+import Icon from '~/components/Icon.vue'
+import location from '~/assets/svg/location.svg'
 
-    export default {
-        name: 'current-location',
+export default {
+  name: 'CurrentLocation',
 
-        components: {
-            ErrorMessage,
-            Icon,
-        },
+  components: {
+    ErrorMessage,
+    Icon
+  },
 
-        data() {
-            return {
-                isError: false,
-                location,
-            };
-        },
+  data () {
+    return {
+      isError: false,
+      location
+    }
+  },
 
-        methods: {
-            getLocation() {
-                const success = (position) => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    this.$emit('userLocation', lat, lon);
-                };
+  methods: {
+    getLocation () {
+      const success = (position) => {
+        const lat = position.coords.latitude
+        const lon = position.coords.longitude
+        this.$emit('userLocation', lat, lon)
+      }
 
-                const error = () => {
-                    this.message = 'Unable to retrieve your location. Please, make sure your GPS is enabled';
-                    this.isError = !this.isError;
-                    setTimeout(() => {
-                        this.isError = !this.isError;
-                    }, 5000);
-                };
+      const error = () => {
+        this.message = 'Unable to retrieve your location. Please, make sure your GPS is enabled'
+        this.isError = !this.isError
+        setTimeout(() => {
+          this.isError = !this.isError
+        }, 5000)
+      }
 
-                navigator.geolocation.getCurrentPosition(success, error);
-            },
-        },
-    };
+      navigator.geolocation.getCurrentPosition(success, error)
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

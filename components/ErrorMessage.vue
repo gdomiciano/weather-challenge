@@ -1,16 +1,22 @@
 <template>
-    <div>
-        <p class="Error-message">{{message}}</p>
-    </div>
+  <div>
+    <p class="Error-message">
+      {{ message }}
+    </p>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'error-message',
-        props: ['message'],
-    };
+export default {
+  name: 'ErrorMessage',
+  props: {
+    message: {
+      type: String,
+      default: ''
+    }
+  }
+}
 </script>
 
 <style scoped>
-
 </style>

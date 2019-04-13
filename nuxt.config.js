@@ -1,65 +1,56 @@
-module.exports = {
-
-    build: {
-        vendor: [
-            'axios',
-        ],
-
-        extend(config, ctx) {
-            if (ctx.isClient) {
-                config.module.rules.push({
-                    enforce: 'pre',
-                    test: /\.(js|vue)$/,
-                    loader: 'eslint-loader',
-                    exclude: /(node_modules)/,
-                    options: {
-                        fix: true,
-                    },
-                });
-            }
-
-            const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
-            urlLoader.test = /\.(png|jpe?g|gif)$/;
-
-            config.module.rules.push({
-                test: /\.svg$/,
-                loader: 'svg-sprite-loader',
-            });
-        },
-
-        publicPath: 'https://gdomiciano.github.io/weather-challenge/',
-
+process.env.DEBUG = 'nuxt:*'
+console.log(process.env, process.NODE_ENV)
+export default {
+  build: {
+    extend (config, { isDev, isClient }) {
+      if (isDev && isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+        const StyleLintPlugin = require('stylelint-webpack-plugin')
+        config.plugins.push(
+          new StyleLintPlugin({
+            files: '**/*.{vue,scss}',
+            syntax: 'scss',
+            fix: true
+          })
+        )
+      }
     },
+    extractCSS: true
+  },
 
-    head: {
-        title: 'Weather Challenge - Klöeckner',
-    },
+  head: {
+    title: 'Weather Challenge - Klöeckner'
+  },
 
-    loading: { color: '#F3C80F' },
+  loading: { color: '#F3C80F' },
 
-    manifest: {
-        name: 'Weather Challenge',
-        short_name: 'Weather',
-        display: 'fullscreen',
-        background_color: '#000000',
-        description: 'PWA weather challenge for Klöeckner',
-        lang: 'en',
-        orientation: 'portrait',
-        theme_color: '#0077AA',
-    },
+  manifest: {
+    name: 'Weather Challenge',
+    short_name: 'Weather',
+    display: 'fullscreen',
+    background_color: '#000000',
+    description: 'PWA weather challenge for Klöeckner',
+    lang: 'en',
+    orientation: 'portrait',
+    theme_color: '#0077AA'
+  },
 
-    modules: [
-        '@nuxtjs/pwa',
-        '@nuxtjs/axios',
-        '@nuxtjs/proxy',
-        '@nuxtjs/workbox',
-    ],
+  modules: [
+    '@nuxtjs/pwa',
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
+  ],
 
-    proxy: [
-        ['/api', { target: 'http://api.openweathermap.org', pathRewrite: { '^/api': '/data/2.5' } }],
-    ],
+  proxy: [
+    ['/api', { target: 'http://api.openweathermap.org', pathRewrite: { '^/api': '/data/2.5' } }]
+  ],
 
-    plugins: [
-        { src: '~/plugins/google-maps.js', ssr: false },
-    ],
-};
+  plugins: [
+    { src: '~/plugins/google-maps.js', ssr: false }
+  ]
+}
