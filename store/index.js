@@ -10,7 +10,7 @@ const getters = {
 }
 
 const mutations = {
-  GET_PLACE_WEATHER (state, model) {
+  SET_PLACE_WEATHER (state, model) {
     /*eslint-disable */
     model.main.temp = Math.floor(model.main.temp);
     model.main.temp_min = Math.floor(model.main.temp_min);
@@ -31,25 +31,33 @@ const actions = {
     const lat = Math.floor(Math.random() * (90 - (-90)) + (-90));
     const lon = Math.floor(Math.random() * (180 - (-180)) + (-180));
     /* eslint-enable */
-    const ramdomPlace = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_ID}`)
-    if (ramdomPlace.name) {
+    try {
+      const ramdomPlace = await this.$axios.$get(`/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_ID}`)
       ramdomPlace.type = 'random'
-      commit('GET_PLACE_WEATHER', ramdomPlace)
-    } else {
+      commit('SET_PLACE_WEATHER', ramdomPlace)
+    } catch (error) {
       await dispatch('getRandomPlace')
     }
   },
 
   async getSelectedPlace ({ commit }, params) {
-    const userCity = await this.$axios.$get(`/weather?q=${params.city},${params.country}&units=metric&appid=${API_ID}`)
-    userCity.type = 'city'
-    commit('GET_PLACE_WEATHER', userCity)
+    try {
+      const userCity = await this.$axios.$get(`/weather?q=${params.city},${params.country}&units=metric&appid=${API_ID}`)
+      userCity.type = 'city'
+      commit('SET_PLACE_WEATHER', userCity)
+    } catch (error) {
+      throw error
+    }
   },
 
   async getCurrentLocation ({ commit }, position) {
-    const location = await this.$axios.$get(`/weather?lat=${position.lat}&lon=${position.lon}&units=metric&appid=${API_ID}`)
-    location.type = 'geolocation'
-    commit('GET_PLACE_WEATHER', location)
+    try {
+      const location = await this.$axios.$get(`/weather?lat=${position.lat}&lon=${position.lon}&units=metric&appid=${API_ID}`)
+      location.type = 'geolocation'
+      commit('SET_PLACE_WEATHER', location)
+    } catch (error) {
+      throw error
+    }
   }
 }
 
