@@ -26,7 +26,7 @@ export default {
     title: 'Weather Challenge - Klöeckner'
   },
 
-  loading: { color: '#F3C80F' },
+  loading: false,
 
   manifest: {
     name: 'Weather Challenge',
