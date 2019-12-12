@@ -1,43 +1,29 @@
 {
   "name": "weather-challenge",
   "version": "1.0.0",
-  "description": "PWA weather challenge",
-  "author": "Geisy Domiciano <geisydomiciano@gmail.com>",
+  "description": "Weathermap client API",
+  "author": "Geisy Domiciano",
   "private": true,
-  "dependencies": {
-    "@nuxtjs/axios": "^4.3.0",
-    "@nuxtjs/proxy": "^1.1.2",
-    "@nuxtjs/pwa": "latest",
-    "dev": "^0.1.3",
-    "nuxt": "1.0.0-rc8"
-  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint",
-    "chromedriver": "chromedriver --url-base=/wd/hub --verbose --log-path=chromedriver.log",
-    "test": "npm run test:components && npm run test:integration",
-    "test:components": "nightwatch --config test/e2e/nightwatch.conf.js -g test/e2e/specs/components/",
-    "test:integration": "nightwatch --config test/e2e/nightwatch.conf.js  -g test/e2e/specs/integration",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore . --fix"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "@nuxtjs/dotenv": "^1.4.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "chromedriver": "^2.32.3",
-    "eslint": "^4.6.1",
-    "eslint-config-airbnb-base": "^12.0.0",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-html": "^3.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-promise": "^3.4.1",
-    "nightwatch": "^0.9.16",
-    "node-sass": "^4.5.3",
-    "push-dir": "^0.4.1",
-    "sass-loader": "^6.0.6",
-    "svg-sprite-loader": "^3.2.5",
-    "vue2-google-maps": "^0.8.2"
+    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.1.0",
+    "eslint-plugin-nuxt": "^0.5.0",
+    "@nuxtjs/stylelint-module": "^3.1.0",
+    "stylelint": "^10.1.0"
   }
 }

@@ -1,64 +1,67 @@
-module.exports = {
 
-    build: {
-        vendor: [
-            'axios',
-        ],
-
-        extend(config, ctx) {
-            if (ctx.isClient) {
-                config.module.rules.push({
-                    enforce: 'pre',
-                    test: /\.(js|vue)$/,
-                    loader: 'eslint-loader',
-                    exclude: /(node_modules)/,
-                    options: {
-                        fix: true,
-                    },
-                });
-            }
-
-            const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
-            urlLoader.test = /\.(png|jpe?g|gif)$/;
-
-            config.module.rules.push({
-                test: /\.svg$/,
-                loader: 'svg-sprite-loader',
-            });
-        },
-
-        publicPath: 'https://gdomiciano.github.io/weather-challenge/',
-
-    },
-
-    head: {
-        title: 'Weather Challenge - Klöeckner',
-    },
-
-    loading: { color: '#F3C80F' },
-
-    manifest: {
-        name: 'Weather Challenge',
-        short_name: 'Weather',
-        display: 'fullscreen',
-        background_color: '#000000',
-        description: 'PWA weather challenge for Klöeckner',
-        lang: 'en',
-        orientation: 'portrait',
-        theme_color: '#0077AA',
-    },
-
-    modules: [
-        '@nuxtjs/pwa',
-        '@nuxtjs/axios',
-        '@nuxtjs/proxy',
+export default {
+  mode: 'universal',
+  /*
+  ** Headers of the page
+  */
+  head: {
+    title: process.env.npm_package_name || '',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
-
-    proxy: [
-        ['/api', { target: 'http://api.openweathermap.org', pathRewrite: { '^/api': '/data/2.5' } }],
-    ],
-
-    plugins: [
-        { src: '~/plugins/google-maps.js', ssr: false },
-    ],
-};
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ]
+  },
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: '#fff' },
+  /*
+  ** Global CSS
+  */
+  css: [
+  ],
+  /*
+  ** Plugins to load before mounting the App
+  */
+  plugins: [
+  ],
+  /*
+  ** Nuxt.js dev-modules
+  */
+  // buildModules: [
+  //   // Doc: https://github.com/nuxt-community/eslint-module
+  //   '@nuxtjs/eslint-module',
+  //   // Doc: https://github.com/nuxt-community/stylelint-module
+  //   '@nuxtjs/stylelint-module'
+  // ],
+  /*
+  ** Nuxt.js modules
+  */
+  modules: [
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv'
+  ],
+  /*
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
+  axios: {
+  },
+  /*
+  ** Build configuration
+  */
+  build: {
+    /*
+    ** You can extend webpack config here
+    */
+    extend (config, ctx) {
+    }
+  }
+}
