@@ -12,6 +12,7 @@
   </div>
 </template>
 
+
 <script>
 import { type } from 'os'
   export default {
@@ -27,10 +28,7 @@ import { type } from 'os'
       },
       minTemp: {
         type: [Number,String],
-        default: '--',
-        validator: function (value) {
-          if(typeof value !== Number) return false
-        }
+        default: ''
       },
       maxTemp: {
         type: [Number, String],
@@ -39,7 +37,7 @@ import { type } from 'os'
     },
     computed: {
       hasMinTemp() {
-        return typeof value === Number
+        return this.minTemp !== ''
       }
     }
   }

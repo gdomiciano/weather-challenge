@@ -5,44 +5,33 @@
       <h1 class="title">
         weather-challenge
       </h1>
-      <h2 class="subtitle">
-        Nuxt weather client api project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <weather-info
+        v-if="Object.keys(tempInfo).length > 0"
+        :city-name="tempInfo.name"
+        :current-temp="tempInfo.main.temp"
+        :min-temp="tempInfo.main.temp_min"
+        :max-temp="tempInfo.main.temp_max"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import { mapGetters } from 'Vuex'
+import WeatherInfo from '~/components/WeatherInfo.vue'
 
 export default {
   components: {
-    Logo
+    Logo,
+    WeatherInfo
   },
-  // mounted () {
-  //   this.$axios.$get(process.env.NUXT_APP_API_BASE_URL, {
-  //     params: {
-  //       q: 'london',
-  //       appid: process.env.NUXT_APP_API_ID
-  //     }
-  //   })
-  // }
+  beforeCreate () {
+    this.$store.dispatch('getRandomTempInfo')
+  },
+  computed: {
+    ...mapGetters(['tempInfo', 'error'])
+  }
 }
 </script>
 
